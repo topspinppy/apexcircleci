@@ -5,6 +5,9 @@
   "repository": "git@github.com:thecodetime/apex.git",
   "author": "Ek <ekkapob@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
     "gulp": "^3.9.1",
