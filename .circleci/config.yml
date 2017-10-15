@@ -17,4 +17,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
       - run: ssh-keyscan -H 128.199.178.129 >> ~/.ssh/known_hosts
-      - run: git push apex@128.199.178.129:apex-git-server master
+      - run:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push apex@128.199.178.129:apex-git-server master
+            fi
