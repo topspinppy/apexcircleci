@@ -16,9 +16,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
-      - run: ssh-keyscan -H 128.199.178.129 >> ~/.ssh/known_hosts
-      - run:
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push apex@128.199.178.129:apex-git-server master
-            fi
+      - deployment:
+          production:
+            branch: master
+            commands:
+              - npm install -g firebase-tools
+              - firebase login --email $FIREBASE_USERNAME --password $FIREBASE_PASSWORD
+              - firebase deploy
